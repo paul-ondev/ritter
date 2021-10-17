@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Typography, Button } from "@mui/material";
+import {
+  Typography,
+  Button,
+  IconButton,
+  Divider,
+  FormControl,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
@@ -32,6 +38,7 @@ const useStyles = makeStyles({
 
 function SignIn() {
   const classes = useStyles();
+
   return (
     <>
       <div className={classes.wrapper}>
@@ -68,6 +75,9 @@ function SignIn() {
               Sign Up
             </Button>
             <Button
+              onClick={() => {
+                handleClickSignIn("open");
+              }}
               sx={{ fontSize: "fontSize", textTransform: "none", width: 300 }}
               variant="outlined"
               fullWidth
