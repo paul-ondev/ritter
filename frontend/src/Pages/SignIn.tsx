@@ -1,14 +1,13 @@
 import React from "react";
 
-import {
-  Typography,
-  Button,
-  IconButton,
-  Divider,
-  FormControl,
-} from "@mui/material";
+import { Typography, Button, FormControl } from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
+import TextField from "@mui/material/TextField";
+
 import { makeStyles } from "@mui/styles";
 import TwitterIcon from "@mui/icons-material/Twitter";
+
+import { ModalBox } from "../components/ModalBox";
 
 const useStyles = makeStyles({
   wrapper: {
@@ -39,6 +38,20 @@ const useStyles = makeStyles({
 function SignIn() {
   const classes = useStyles();
 
+  const [visibleModal, setVisibleModal] = React.useState<"signIn" | "signUp">();
+
+  function handleOpenSignIn(): void {
+    setVisibleModal("signIn");
+  }
+
+  function handleOpenSignUp(): void {
+    setVisibleModal("signUp");
+  }
+
+  function handleCloseModal(): void {
+    setVisibleModal(undefined);
+  }
+
   return (
     <>
       <div className={classes.wrapper}>
@@ -63,6 +76,7 @@ function SignIn() {
               Join Twitter today.
             </Typography>
             <Button
+              onClick={handleOpenSignUp}
               sx={{
                 fontSize: "fontSize",
                 mb: 3,
@@ -75,9 +89,7 @@ function SignIn() {
               Sign Up
             </Button>
             <Button
-              onClick={() => {
-                handleClickSignIn("open");
-              }}
+              onClick={handleOpenSignIn}
               sx={{ fontSize: "fontSize", textTransform: "none", width: 300 }}
               variant="outlined"
               fullWidth
@@ -88,6 +100,74 @@ function SignIn() {
         </section>
       </div>
       <footer className={classes.footerBlock}>do not copy</footer>
+      <ModalBox
+        handleClick={handleCloseModal}
+        visible={visibleModal === "signIn"}
+        title="Sign In to Twitter"
+      >
+        <FormControl>
+          <TextField
+            autoFocus
+            fullWidth
+            sx={{ mb: 3 }}
+            id="filled-basic"
+            label="E-mail"
+            type="email"
+            variant="filled"
+          />
+          <TextField
+            id="filled-basic"
+            label="Password"
+            type="password"
+            variant="filled"
+            fullWidth
+            // sx={{ width: 300 }}
+          />
+        </FormControl>
+        <DialogActions>
+          <Button variant="contained" sx={{ color: "white", mt: 3 }} fullWidth>
+            Sign In
+          </Button>
+        </DialogActions>
+      </ModalBox>
+      <ModalBox
+        handleClick={handleCloseModal}
+        visible={visibleModal === "signUp"}
+        title="Create your account"
+      >
+        <FormControl>
+          <TextField
+            autoFocus
+            fullWidth
+            sx={{ mb: 6 }}
+            id="filled-basic"
+            label="Name"
+            type="name"
+            variant="filled"
+          />
+          <TextField
+            fullWidth
+            sx={{ mb: 5 }}
+            id="filled-basic"
+            label="E-mail"
+            type="email"
+            variant="filled"
+          />
+          <TextField
+            id="filled-basic"
+            label="Password"
+            type="password"
+            variant="filled"
+            fullWidth
+            // sx={{ width: 300 }}
+          />
+        </FormControl>
+        <DialogActions>
+          <Button variant="contained" sx={{ color: "white", mt: 3 }} fullWidth>
+            Next
+          </Button>
+        </DialogActions>
+      </ModalBox>
     </>
   );
 }
