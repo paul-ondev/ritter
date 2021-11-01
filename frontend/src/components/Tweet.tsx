@@ -10,7 +10,7 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShareIcon from "@mui/icons-material/IosShare";
 
-import { useStyles } from "../../Pages/Home";
+import { useStyles } from "../Pages/Home";
 
 interface TweetProps {
   text: string;
@@ -48,13 +48,11 @@ export const Tweet: React.FC<TweetProps> = ({
         <Grid item xs={11}>
           <div className={classes.tweetTop}>
             <span className={classes.tweetTopInfo}>
-              {user.fullName}
+              {user.fullName}&nbsp;
               <b className={classes.tweetTopInfoUserLink}>@{user.userName}</b>
-              <b className={classes.tweetTopInfoTweetDate}>
-                {" "}
-                <span className={classes.tweetTopInfoTweetDateCircle}></span>
-                12 Oct
-              </b>
+              &nbsp;
+              <span>·</span>&nbsp;
+              <b className={classes.tweetTopInfoTweetDate}>12 Oct</b>
             </span>
             <span className={classes.tweetTopInfoMore}>More</span>
           </div>
@@ -66,7 +64,7 @@ export const Tweet: React.FC<TweetProps> = ({
           >
             {text}
           </Typography>
-          <div className={classes.footer}>
+          <div className={classes.tweetFooter}>
             <div>
               <IconButton>
                 <ChatBubbleOutlineIcon color="primary" />

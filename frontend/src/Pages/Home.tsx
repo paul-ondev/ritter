@@ -6,23 +6,34 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-import { Tweet } from "./../components/Tweet";
+import { SideMenu } from "../components/SideMenu";
+import { Tweet } from "../components/Tweet";
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   sideMenuList: {
     paddingLeft: 5,
   },
   sideMenuItem: {
-    display: "flex",
-    alignItems: "center",
+    "&:hover": {
+      "& div": {
+        backgroundColor: "rgba(29,161,242,0.1)",
+        "& h6": {
+          color: "#0D9AFB",
+        },
+        "& svg path": {
+          fill: "#0D9AFB",
+        },
+      },
+    },
+    "& div": {
+      display: "inline-flex",
+      alignItems: "center",
+      borderRadius: 30,
+      padding: "10px 20px 10px 15px",
+      transition: "background-color 0.1s ease-in-out",
+    },
+
     cursor: "pointer",
     paddingLeft: 15,
     paddingBottom: 15,
@@ -71,7 +82,9 @@ export const useStyles = makeStyles(() => ({
     },
   },
   tweetTopInfoMore: {},
-  footer: {
+  tweetFooter: {
+    position: "relative",
+    left: -10,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -89,80 +102,12 @@ export const Home = () => {
   const classes = useStyles();
   return (
     <div>
-      <Container sx={{}} maxWidth="xl">
+      <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item xs={3}>
-            <ul className={classes.sideMenuList}>
-              <li className={classes.sideMenuItem}>
-                <IconButton>
-                  <TwitterIcon sx={{ fontSize: 42 }} color="primary" />
-                </IconButton>
-              </li>
-              <li className={classes.sideMenuItem}>
-                <IconButton>
-                  <SearchIcon sx={{ color: "common.black", fontSize: 30 }} />
-                </IconButton>
-                <Typography
-                  sx={{ pl: 1.5, fontWeight: "fontWeightBold" }}
-                  variant="h6"
-                >
-                  Explore
-                </Typography>
-              </li>
-              <li className={classes.sideMenuItem}>
-                <IconButton>
-                  <NotificationsNoneIcon
-                    sx={{ color: "common.black", fontSize: 30 }}
-                  />
-                </IconButton>
-                <Typography
-                  sx={{ fontWeight: "fontWeightBold", pl: 1.5 }}
-                  variant="h6"
-                >
-                  Notifications
-                </Typography>
-              </li>
-              <li className={classes.sideMenuItem}>
-                <IconButton>
-                  <MailOutlineIcon
-                    sx={{ color: "common.black", fontSize: 30 }}
-                  />
-                </IconButton>
-                <Typography
-                  sx={{ fontWeight: "fontWeightBold", pl: 1.5 }}
-                  variant="h6"
-                >
-                  Messages
-                </Typography>
-              </li>
-              <li className={classes.sideMenuItem}>
-                <IconButton>
-                  <PersonOutlineIcon
-                    sx={{ color: "common.black", fontSize: 30 }}
-                  />
-                </IconButton>
-                <Typography
-                  sx={{ fontWeight: "fontWeightBold", pl: 1.5 }}
-                  variant="h6"
-                >
-                  Profile
-                </Typography>
-              </li>
-              <li className={classes.sideMenuItem}>
-                <IconButton>
-                  <MoreHorizIcon sx={{ color: "common.black", fontSize: 30 }} />
-                </IconButton>
-                <Typography
-                  sx={{ fontWeight: "fontWeightBold", pl: 1.5 }}
-                  variant="h6"
-                >
-                  More
-                </Typography>
-              </li>
-              <li></li>
-            </ul>
+          <Grid item xs={2}>
+            <SideMenu classes={classes} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Paper
               sx={{
                 height: "100%",
