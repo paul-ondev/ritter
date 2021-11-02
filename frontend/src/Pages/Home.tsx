@@ -15,6 +15,9 @@ export const useStyles = makeStyles((theme) => ({
     paddingLeft: 5,
   },
   sideMenuItem: {
+    "&:first-child": {
+      paddingTop: 15,
+    },
     "&:hover": {
       "& div": {
         backgroundColor: "rgba(29,161,242,0.1)",
@@ -104,10 +107,10 @@ export const Home = () => {
     <div>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item xs={2}>
+          <Grid item xs={3}>
             <SideMenu classes={classes} />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={6}>
             <Paper
               sx={{
                 height: "100%",
